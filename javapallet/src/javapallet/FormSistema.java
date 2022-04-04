@@ -1,19 +1,13 @@
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package javapallet;
-import java.util.*;
 
-/**
- *
- * @author mefma
- */
+package javapallet;
+
+import java.util.*;
+import javax.swing.JOptionPane;
+
 public class FormSistema extends javax.swing.JFrame {
 
-    Stack<Pallet> pilha = new Stack<>();
+    Stack<Pallet>  pilha = new Stack<>();
     Stack<Pallet> paux = new Stack<>();
    
     public FormSistema() {
@@ -82,11 +76,6 @@ public class FormSistema extends javax.swing.JFrame {
 
         txtProduto.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         txtProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
-        txtProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProdutoActionPerformed(evt);
-            }
-        });
 
         txtQtd.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder("Quantidade"));
@@ -190,18 +179,28 @@ public class FormSistema extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
     
-    void limpaCampo(){
+     void limpaCampo(){
         txtProduto.setText("");
         txtQtd.setText("");
     }
     
-    void mostra(){
+    void mostraPilha(){
+        // Pilha principal
         listPilha.setText("");
         for(Pallet p: pilha)
             listPilha.append(p.toString() + "\n");
         
-        lblTopo.setText("Topo: " + pilha.peek());
+        // mostrando a pilha aux 
+        listAux.setText("");
+        for(Pallet p: paux)
+            listAux.append(p.toString()+"\n");
+        
+        if(pilha.isEmpty())
+            lblTopo.setText("Topo: Vazio!");
+        else
+            lblTopo.setText("Topo: " + pilha.peek());
     }
+    
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {                                       
         Pallet p = new Pallet();
@@ -210,32 +209,36 @@ public class FormSistema extends javax.swing.JFrame {
         pilha.push(p);
         System.out.println(pilha);
         System.out.println("Topo: " + pilha.peek());
-        mostra();
+        mostraPilha();
         limpaCampo();
     }                                      
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Pallet p = new Pallet();
-        p.setProduto(txtProduto.getText());
-        p.setQtd(Integer.parseInt(txtQtd.getText()) );
-        if(pilha.isEmpty()){
-            System.out.println("Lista vazia! Impossivel remover!");
-            limpaCampo();
-        } else { 
-            pilha.pop();
-            mostra();
-            limpaCampo();
+        if(!pilha.isEmpty()){
+            p = pilha.peek();
+            if(p.getProduto().equals(txtProduto.getText())){
+                p = pilha.pop();
+                listAux.append(p.toString() + "\n");
+                JOptionPane.showMessageDialog(null, "Encontrado");
+                mostraPilha();
+            } else {
+                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: " + p.getProduto());
+                paux.push(pilha.pop());
+                mostraPilha();
+            }
         }
     }                                         
-
-    private void txtProdutoActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -253,6 +256,8 @@ public class FormSistema extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormSistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormSistema().setVisible(true);
