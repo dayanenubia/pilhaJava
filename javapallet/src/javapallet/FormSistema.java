@@ -206,37 +206,41 @@ public class FormSistema extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {                                       
         Pallet p = new Pallet();
         p.setProduto(txtProduto.getText());
-        p.setQtd( Integer.parseInt(txtQtd.getText()) );
+        p.setQtd(Integer.parseInt(txtQtd.getText()) );
         pilha.push(p);
         System.out.println(pilha);
-        System.out.println("Topo:"+pilha.peek());
+        System.out.println("Topo: " + pilha.peek());
         mostraPilha();
         limpaCampo();
     }                                      
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Pallet p = new Pallet();
-        while(!pilha.isEmpty()){
+        p.setProduto(txtProduto.getText());
+        p.setQtd(Integer.parseInt(txtQtd.getText()) );
+        if(!pilha.isEmpty()){
             p = pilha.peek();
-            if(p.getProduto().equals(txtProduto.getText())){
+            if(p.getProduto().equals(txtProduto.getText())){ 
                 p = pilha.pop();
                 if(Integer.parseInt(txtQtd.getText()) >= p.getQtd()){
-                    JOptionPane.showMessageDialog(null, "Produto removido com sucesso!");
+                    p = pilha.pop();
+                    listAux.append(p.toString() + "\n");
+                    JOptionPane.showMessageDialog(null, "Encontrado");
+                    mostraPilha();
                 } else {
                     p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
                     pilha.push(p);
+                    //JOptionPane.showMessageDialog(null, "Foi removido: " + p.getQtd() + " do produto : " + p.getProduto());
                 }
-                mostraPilha();
-                break;
-            }else{
-                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: " + p.getProduto() );
+            } else {
+                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: " + p.getProduto());
                 paux.push(pilha.pop());
                 mostraPilha();
-            }// fim else remove 
-        }// fim while isEmpty
-        while(!paux.isEmpty()){
-            pilha.push(paux.pop());
+            }
         }
+        //if(!paux.isEmpty()){
+            //pilha.push(paux.pop());
+        //}
     }                                         
 
     /**
