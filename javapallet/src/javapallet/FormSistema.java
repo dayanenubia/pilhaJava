@@ -184,49 +184,58 @@ public class FormSistema extends javax.swing.JFrame {
         txtQtd.setText("");
     }
     
-    void mostraPilha(){
-        // Pilha principal
-        listPilha.setText("");
-        for(Pallet p: pilha)
-            listPilha.append(p.toString() + "\n");
-        
-        // mostrando a pilha aux 
-        listAux.setText("");
-        for(Pallet p: paux)
-            listAux.append(p.toString()+"\n");
-        
-        if(pilha.isEmpty())
-            lblTopo.setText("Topo: Vazio!");
-        else
-            lblTopo.setText("Topo: " + pilha.peek());
+     void mostraPilha(){
+        // pilha principal
+       listPilha.setText("");
+       for(Pallet p: pilha)
+          listPilha.append(p.toString()+"\n");
+       
+       // mostrando a pilha Aux
+       listAux.setText("");
+       for(Pallet p: paux)
+          listAux.append(p.toString()+"\n");
+      
+      if(pilha.isEmpty())
+          lblTopo.setText("Topo: Vazio");
+      else
+       lblTopo.setText("Topo: "+pilha.peek());
+       
     }
     
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {                                       
         Pallet p = new Pallet();
         p.setProduto(txtProduto.getText());
-        p.setQtd(Integer.parseInt(txtQtd.getText()) );
+        p.setQtd( Integer.parseInt(txtQtd.getText()) );
         pilha.push(p);
         System.out.println(pilha);
-        System.out.println("Topo: " + pilha.peek());
+        System.out.println("Topo:"+pilha.peek());
         mostraPilha();
         limpaCampo();
     }                                      
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Pallet p = new Pallet();
-        if(!pilha.isEmpty()){
+        while(!pilha.isEmpty()){
             p = pilha.peek();
             if(p.getProduto().equals(txtProduto.getText())){
                 p = pilha.pop();
-                listAux.append(p.toString() + "\n");
-                JOptionPane.showMessageDialog(null, "Encontrado");
+                if(Integer.parseInt(txtQtd.getText()) >= p.getQtd()){
+                    JOptionPane.showMessageDialog(null, "Produto removido com sucesso!");
+                } else {
+                    p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
+                    pilha.push(p);
+                }
                 mostraPilha();
-            } else {
-                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: " + p.getProduto());
+                break;
+            }else{
+                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: " + p.getProduto() );
                 paux.push(pilha.pop());
                 mostraPilha();
-            }
+            }// fim else remove 
+        }// fim while isEmpty
+        while(!paux.isEmpty()){
+            pilha.push(paux.pop());
         }
     }                                         
 
