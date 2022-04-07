@@ -1,5 +1,4 @@
 
-
 package javapallet;
 
 import java.util.*;
@@ -184,22 +183,21 @@ public class FormSistema extends javax.swing.JFrame {
         txtQtd.setText("");
     }
     
-     void mostraPilha(){
-        // pilha principal
-       listPilha.setText("");
-       for(Pallet p: pilha)
-          listPilha.append(p.toString()+"\n");
-       
-       // mostrando a pilha Aux
-       listAux.setText("");
-       for(Pallet p: paux)
-          listAux.append(p.toString()+"\n");
-      
-      if(pilha.isEmpty())
-          lblTopo.setText("Topo: Vazio");
-      else
-       lblTopo.setText("Topo: "+pilha.peek());
-       
+    void mostraPilha(){
+        // Pilha principal
+        listPilha.setText("");
+        for(Pallet p: pilha)
+            listPilha.append(p.toString() + "\n");
+        
+        // mostrando a pilha aux 
+        listAux.setText("");
+        for(Pallet p: paux)
+            listAux.append(p.toString()+"\n");
+        
+        if(pilha.isEmpty())
+            lblTopo.setText("Topo: Vazio!");
+        else
+            lblTopo.setText("Topo: " + pilha.peek());
     }
     
     
@@ -216,18 +214,16 @@ public class FormSistema extends javax.swing.JFrame {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Pallet p = new Pallet();
-        p.setProduto(txtProduto.getText());
-        p.setQtd(Integer.parseInt(txtQtd.getText()) );
-        if(!pilha.isEmpty()){
+        while(!pilha.isEmpty()){
             p = pilha.peek();
             if(p.getProduto().equals(txtProduto.getText())){ 
-                p = pilha.pop();
                 if(Integer.parseInt(txtQtd.getText()) >= p.getQtd()){
                     p = pilha.pop();
                     listAux.append(p.toString() + "\n");
                     JOptionPane.showMessageDialog(null, "Encontrado");
                     mostraPilha();
                 } else {
+                    p = pilha.pop();
                     p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
                     pilha.push(p);
                     //JOptionPane.showMessageDialog(null, "Foi removido: " + p.getQtd() + " do produto : " + p.getProduto());
@@ -237,10 +233,11 @@ public class FormSistema extends javax.swing.JFrame {
                 paux.push(pilha.pop());
                 mostraPilha();
             }
-        }
-        //if(!paux.isEmpty()){
+        }// fim while isEmpty    
+        //while(!paux.isEmpty()){
             //pilha.push(paux.pop());
         //}
+
     }                                         
 
     /**
