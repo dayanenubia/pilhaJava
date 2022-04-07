@@ -219,24 +219,22 @@ public class FormSistema extends javax.swing.JFrame {
             if(p.getProduto().equals(txtProduto.getText())){ 
                 if(Integer.parseInt(txtQtd.getText()) >= p.getQtd()){
                     p = pilha.pop();
-                    listAux.append(p.toString() + "\n");
-                    JOptionPane.showMessageDialog(null, "Encontrado");
+                    JOptionPane.showMessageDialog(null, "Removido");
                     mostraPilha();
                 } else {
                     p = pilha.pop();
                     p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
                     pilha.push(p);
-                    //JOptionPane.showMessageDialog(null, "Foi removido: " + p.getQtd() + " do produto : " + p.getProduto());
+                    JOptionPane.showMessageDialog(null, "Encontrado");
+                    mostraPilha();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: " + p.getProduto());
+                JOptionPane.showMessageDialog(null, "Não está no topo");
                 paux.push(pilha.pop());
                 mostraPilha();
             }
-        }// fim while isEmpty    
-        //while(!paux.isEmpty()){
-            //pilha.push(paux.pop());
-        //}
+            break;
+        }// fim while isEmpty  
 
     }                                         
 
