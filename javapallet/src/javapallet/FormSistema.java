@@ -172,6 +172,11 @@ public class FormSistema extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
+   void limpaCampo(){
+        txtProduto.setText("");
+        txtQtd.setText("");
+    }
+   
     void mostraPilha(){
         // pilha principal
        listPilha.setText("");
@@ -198,6 +203,7 @@ public class FormSistema extends javax.swing.JFrame {
         System.out.println(pilha);
         System.out.println("Topo:"+pilha.peek());
         mostraPilha();
+        limpaCampo();
     }                                      
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -210,12 +216,14 @@ public class FormSistema extends javax.swing.JFrame {
                     p = pilha.pop();
                     JOptionPane.showMessageDialog(null, "Removi tudo");
                     mostraPilha();
+                    limpaCampo();
                 } else {
                     p = pilha.pop();
                     p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
                     pilha.push(p);
                     JOptionPane.showMessageDialog(null, "Decrementei");
                     mostraPilha();
+                    limpaCampo();
                 }
                 mostraPilha();
                 break;
@@ -224,14 +232,17 @@ public class FormSistema extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Movendo para auxiliar:"+p.getProduto() );
                 paux.push(pilha.pop());
                 mostraPilha();
+                limpaCampo();
             }// fim else remove
         }// fim while isEmpty 
         while(!paux.isEmpty()){
             pilha.push(paux.pop());
             mostraPilha();
+            limpaCampo();
         }
         if(pilha.isEmpty()){
             JOptionPane.showMessageDialog(null, "A pilha está vazia!");
+            limpaCampo();
         }
     }                                         
 
