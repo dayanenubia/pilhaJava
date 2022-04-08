@@ -206,7 +206,7 @@ public class FormSistema extends javax.swing.JFrame {
         limpaCampo();
     }                                      
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
+      private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Pallet p = new Pallet();
         while(!pilha.isEmpty()){
             p = pilha.peek();
@@ -214,25 +214,22 @@ public class FormSistema extends javax.swing.JFrame {
                 //p = pilha.pop();
                 if(Integer.parseInt(txtQtd.getText()) >= p.getQtd()){
                     p = pilha.pop();
-                    JOptionPane.showMessageDialog(null, "Removi tudo");
+                    JOptionPane.showMessageDialog(null, "Removido com sucesso!");
                     mostraPilha();
-                    limpaCampo();
                 } else {
                     p = pilha.pop();
                     p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
                     pilha.push(p);
-                    JOptionPane.showMessageDialog(null, "Decrementei");
+                    JOptionPane.showMessageDialog(null, "Decrementei " + txtQtd.getText() + " do " + p.getProduto());
                     mostraPilha();
-                    limpaCampo();
                 }
                 mostraPilha();
                 break;
             }// fim if equals
             else{
-                JOptionPane.showMessageDialog(null, "Movendo para auxiliar:"+p.getProduto() );
+                JOptionPane.showMessageDialog(null, "Movendo para auxiliar: "+p.getProduto() );
                 paux.push(pilha.pop());
                 mostraPilha();
-                limpaCampo();
             }// fim else remove
         }// fim while isEmpty 
         while(!paux.isEmpty()){
@@ -244,7 +241,7 @@ public class FormSistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "A pilha está vazia!");
             limpaCampo();
         }
-    }                                         
+    } 
 
     /**
      * @param args the command line arguments
