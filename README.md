@@ -43,6 +43,12 @@ Abra o NetBeans, ou qualquer outro programa compativél, baixe os arquivos do [G
 
 <hr>
 
+<h4 align="right" <a name="demo"></a>
+  Demonstração da aplicação
+</h4>
+
+![inicio.png](https://github.com/dayanenubia/pilhaJava.git/dayanenubia/main/.github/assets/inicio.png)
+
 <h4 aling="right" <a name="autor"></a>
    Autor
 </h4>
