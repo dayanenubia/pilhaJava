@@ -233,6 +233,7 @@ public class FormSistema extends javax.swing.JFrame {
             }// fim else remove
         }// fim while isEmpty 
         while(!paux.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Movendo para a pilha principal!");
             pilha.push(paux.pop());
             mostraPilha();
             limpaCampo();
