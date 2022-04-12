@@ -30,8 +30,11 @@
 
 Antes de começar, você vai precisar ter instalado em sua máquina o [NetBeans](https://netbeans.apache.org/download/nb125/nb125.html), ou [Eclipse](https://www.eclipse.org/downloads/).
 
-### Autor
----
+<h4 aling="right" <a name="autor"></a>
+   Autor
+</h4>
+
+<hr>
 
 Feito com ❤️</br> 
 por <a href="https://github.com/dayanenubia/dayanenubia.git" > Dayane Núbia </a> </br> 
