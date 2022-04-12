@@ -2,17 +2,18 @@
 >  *Um sistema desenvolvido em Java de controle de pallets para uma distribuidora de produtos de informática fictícia*
 
 <p align="center">
- <a href="#objetivo">Objetivo</a> •
  <a href="#status">Status</a> • 
  <a href="#features"> Features</a> • 
  <a href="#requisito">Tecnologias</a> • 
- <a href="#licenc-a">Licença</a> • 
+ <a href="#use">Como usar?</a> • 
  <a href="#autor">Autor</a>
 </p>
 
 <h4 align="center" <a name="status"></a> 
     🚧  🚀 Concluído   🚧
 </h4>
+
+<hr>
 
 <h4 aling="right" <a name="features"></a> 
      Features
@@ -24,17 +25,27 @@
 - [x] Devolver para a pilha principal
 - [x] Limpar campos 
 
+<hr>
+
 <h4 aling="right" <a name="requisito"></a>
   🛠 Pré-Requisito e Tecnologia 
 </h4>
 
 Antes de começar, você vai precisar ter instalado em sua máquina o [NetBeans](https://netbeans.apache.org/download/nb125/nb125.html), ou [Eclipse](https://www.eclipse.org/downloads/).
 
+<hr>
+
+<h4 aling="right" <a name="use"></a>
+   Como usar?
+</h4>
+
+Abra o NetBeans, ou qualquer outro programa compativél, baixe os arquivos do [Github](https://github.com/dayanenubia/pilhaJava.git), encontre e abra os mesmos e execute.
+
+<hr>
+
 <h4 aling="right" <a name="autor"></a>
    Autor
 </h4>
-
-<hr>
 
 Feito com ❤️</br> 
 por <a href="https://github.com/dayanenubia/dayanenubia.git" > Dayane Núbia </a> </br> 
