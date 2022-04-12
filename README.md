@@ -1,5 +1,5 @@
 # Pilhas em JAVA
->  *Um sistema desenvolvido em Java de controle de pallets para uma distribuidora de produtos de informática fictícia*
+>  *Um sistema, desenvolvido em Java, de controle de pallets para uma distribuidora de produtos de informática fictícia*
 
 <p align="center">
  <a href="#status">Status</a> • 
